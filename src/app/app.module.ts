@@ -7,13 +7,15 @@ import { ApiClientService } from './clientApi';
 import { LocationsComponent } from './locations/locations.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LocationsComponent
+    LocationsComponent,
+    DatePickerComponent
   ],
   imports: [
     BrowserModule,
