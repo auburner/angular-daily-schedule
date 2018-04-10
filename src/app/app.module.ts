@@ -3,16 +3,24 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { ApiClientService } from './clientApi';
+import { LocationsComponent } from './locations/locations.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LocationsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule, // provides two-way data binding
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
