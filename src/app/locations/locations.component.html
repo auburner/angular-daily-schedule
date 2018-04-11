@@ -1,5 +1,11 @@
 <h2>Select Location</h2>
-<select>
-<option *ngFor="let location of facilities">{{location.facilityId}}-{{location.facilityName}}</option> 
-</select>
+<mat-form-field>
+  <mat-select [(value)]="selectedLocation">
+    <mat-option *ngFor="let location of facilities" [value]="location.facilityId">{{location.facilityId}}-{{location.facilityName}}'></mat-option>
+  </mat-select>
+</mat-form-field>
+
+<p>You selected: {{selectedLocation}}</p>
+
+
 

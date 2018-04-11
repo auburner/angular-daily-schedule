@@ -10,6 +10,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LocationsComponent implements OnInit {
   facilities: Facility[];
+  selectedLocation;
 
 
 
