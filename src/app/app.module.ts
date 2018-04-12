@@ -20,6 +20,7 @@ import {
   MatSelectModule,
   MatOptionModule
 } from "@angular/material";
+import { ButtonScheduleComponent } from './button-schedule/button-schedule.component';
 
 
 
@@ -27,11 +28,13 @@ import {
   declarations: [
     AppComponent,
     LocationsComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    ButtonScheduleComponent
   ],
   imports: [
     BrowserModule,
     FormsModule, // provides two-way data binding
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatFormFieldModule,
@@ -39,7 +42,7 @@ import {
     MatInputModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
   ],
   providers: [ApiClientService],
   bootstrap: [AppComponent]

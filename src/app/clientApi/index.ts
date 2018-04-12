@@ -14,6 +14,8 @@ import {
 */
 @Injectable()
 export class ApiClientService {
+  private location;
+  private date;
 
   private domain = 'http://scadevjobs.com/';
 
@@ -62,4 +64,23 @@ export class ApiClientService {
       return Observable.throw('Unsupported request: ' + method);
     }
   }
+
+  setLocation(location: string) {
+  this.location = location;
+    
+  }
+  
+  getLocation() {
+    return this.location;
+  }
+  
+  
+  setDate(date: string) {
+    this.date = date;
+  }
+  
+  getDate() {
+    return this.date;
+  }
+  
 }
