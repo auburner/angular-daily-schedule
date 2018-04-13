@@ -27,4 +27,7 @@ export class LocationsComponent implements OnInit {
     this.getLocations();
   }
 
+  changeLocation() {
+    this.locationService.changeFacility(this.selectedLocation);
+  }
 }

@@ -1,6 +1,6 @@
-import { Inject, Injectable, Optional } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Inject, Injectable, Optional} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
+import {Observable, BehaviorSubject} from 'rxjs';
 
 import {
   FacilitiesResponse,
@@ -14,12 +14,10 @@ import {
 */
 @Injectable()
 export class ApiClientService {
-  private location;
-  private date;
 
   private domain = 'http://scadevjobs.com/';
 
-  constructor(private http: HttpClient, @Optional() @Inject('domain') domain: string ) {
+  constructor(private http: HttpClient, @Optional() @Inject('domain') domain: string) {
     if (domain) {
       this.domain = domain;
     }
@@ -35,7 +33,7 @@ export class ApiClientService {
     let params = new HttpParams();
     return this.sendRequest<FacilitiesResponse>('get', uri, headers, params, null);
   }
-  
+
 
   /**
   * Method ApiSchedulesByFacilityIdByDayGet
@@ -52,35 +50,31 @@ export class ApiClientService {
 
   private sendRequest<T>(method: string, uri: string, headers: HttpHeaders, params: HttpParams, body: any): Observable<HttpResponse<T>> {
     if (method === 'get') {
-      return this.http.get<T>(this.domain + uri, { headers: headers.set('Accept', 'application/json'), params: params, observe: 'response' });
+      return this.http.get<T>(this.domain + uri, {headers: headers.set('Accept', 'application/json'), params: params, observe: 'response'});
     } else if (method === 'put') {
-      return this.http.put<T>(this.domain + uri, body, { headers: headers.set('Content-Type', 'application/json'), params: params, observe: 'response' });
+      return this.http.put<T>(this.domain + uri, body, {headers: headers.set('Content-Type', 'application/json'), params: params, observe: 'response'});
     } else if (method === 'post') {
-      return this.http.post<T>(this.domain + uri, body, { headers: headers.set('Content-Type', 'application/json'), params: params, observe: 'response' });
+      return this.http.post<T>(this.domain + uri, body, {headers: headers.set('Content-Type', 'application/json'), params: params, observe: 'response'});
     } else if (method === 'delete') {
-      return this.http.delete<T>(this.domain + uri, { headers: headers, params: params, observe: 'response' });
+      return this.http.delete<T>(this.domain + uri, {headers: headers, params: params, observe: 'response'});
     } else {
       console.error('Unsupported request: ' + method);
       return Observable.throw('Unsupported request: ' + method);
     }
   }
 
-  setLocation(location: string) {
-  this.location = location;
-    
+  private facility = new BehaviorSubject<string>("");
+  location = this.facility.asObservable();
+
+  changeFacility(facility: string) {
+    this.facility.next(facility)
   }
   
-  getLocation() {
-    return this.location;
+  private day = new BehaviorSubject<string>("");
+  date = this.day.asObservable();
+
+  changeDay(date: string) {
+    this.day.next(date)
   }
-  
-  
-  setDate(date: string) {
-    this.date = date;
-  }
-  
-  getDate() {
-    return this.date;
-  }
-  
+
 }

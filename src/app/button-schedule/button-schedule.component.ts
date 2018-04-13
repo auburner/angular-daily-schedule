@@ -8,11 +8,18 @@ import { DatePickerComponent } from '../date-picker/date-picker.component'
   styleUrls: ['./button-schedule.component.css']
 })
 export class ButtonScheduleComponent {
+  date: string;
+  location: string
   
   constructor(private locationService: ApiClientService) {}
   
   getSchedule() {
-    this.locationService.ApiSchedulesByFacilityIdByDayGet(this.locationService.getLocation(), this.locationService.getDate());
+    this.locationService.ApiSchedulesByFacilityIdByDayGet(this.location, this.date);
+  }
+  
+  ngOnInit() {
+    this.locationService.location.subscribe(location => this.location = location)
+    this.locationService.date.subscribe(day => this.date = day)
   }
   
 }

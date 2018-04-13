@@ -21,6 +21,7 @@ import {
   MatOptionModule
 } from "@angular/material";
 import { ButtonScheduleComponent } from './button-schedule/button-schedule.component';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 
 
@@ -41,6 +42,7 @@ import { ButtonScheduleComponent } from './button-schedule/button-schedule.compo
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    MatMomentDateModule,
     MatSelectModule,
     MatOptionModule,
   ],
