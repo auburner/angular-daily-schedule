@@ -1,6 +1,7 @@
 import {Inject, Injectable, Optional} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
-import {Observable, BehaviorSubject} from 'rxjs';
+import {Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import {
   FacilitiesResponse,
@@ -15,6 +16,12 @@ import {
 @Injectable()
 export class ApiClientService {
 
+  private facility = new BehaviorSubject<string>('');
+  location = this.facility.asObservable();
+
+  private day = new BehaviorSubject<string>('');
+  date = this.day.asObservable();
+
   private domain = 'http://scadevjobs.com/';
 
   constructor(private http: HttpClient, @Optional() @Inject('domain') domain: string) {
@@ -28,23 +35,23 @@ export class ApiClientService {
   * @return Full HTTP response as Observable
   */
   public ApiLocationsGet(): Observable<HttpResponse<FacilitiesResponse>> {
-    let uri = `/api/Locations`;
-    let headers = new HttpHeaders();
-    let params = new HttpParams();
+    const uri = `/api/Locations`;
+    const headers = new HttpHeaders();
+    const params = new HttpParams();
     return this.sendRequest<FacilitiesResponse>('get', uri, headers, params, null);
   }
 
 
   /**
   * Method ApiSchedulesByFacilityIdByDayGet
-  * @param facilityId 
-  * @param day 
+  * @param facilityId
+  * @param day
   * @return Full HTTP response as Observable
   */
   public ApiSchedulesByFacilityIdByDayGet(facilityId: string, day: string): Observable<HttpResponse<SchedulesResponse>> {
-    let uri = `/api/Schedules/${facilityId}/${day}`;
-    let headers = new HttpHeaders();
-    let params = new HttpParams();
+    const uri = `/api/Schedules/${facilityId}/${day}`;
+    const headers = new HttpHeaders();
+    const params = new HttpParams();
     return this.sendRequest<SchedulesResponse>('get', uri, headers, params, null);
   }
 
@@ -63,18 +70,14 @@ export class ApiClientService {
     }
   }
 
-  private facility = new BehaviorSubject<string>("");
-  location = this.facility.asObservable();
 
   changeFacility(facility: string) {
-    this.facility.next(facility)
+    this.facility.next(facility);
   }
-  
-  private day = new BehaviorSubject<string>("");
-  date = this.day.asObservable();
+
 
   changeDay(date: string) {
-    this.day.next(date)
+    this.day.next(date);
   }
 
 }

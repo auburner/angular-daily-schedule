@@ -15,7 +15,7 @@ export class LocationsComponent implements OnInit {
 
 
   constructor(private locationService: ApiClientService) {
-  
+
   }
 
   getLocations(): void {

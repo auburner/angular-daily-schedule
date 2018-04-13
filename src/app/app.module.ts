@@ -18,10 +18,13 @@ import {
   MatInputModule,
   MatNativeDateModule,
   MatSelectModule,
-  MatOptionModule
-} from "@angular/material";
-import { ButtonScheduleComponent } from './button-schedule/button-schedule.component';
-import { MatMomentDateModule } from "@angular/material-moment-adapter";
+  MatOptionModule,
+  MatSortModule
+} from '@angular/material';
+import {ButtonScheduleComponent} from './button-schedule/button-schedule.component';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import {MatTableModule} from '@angular/material/table';
+import {TableScheduleComponent} from './table-schedule/table-schedule.component';
 
 
 
@@ -30,7 +33,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     AppComponent,
     LocationsComponent,
     DatePickerComponent,
-    ButtonScheduleComponent
+    ButtonScheduleComponent,
+    TableScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     MatMomentDateModule,
     MatSelectModule,
     MatOptionModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [ApiClientService],
   bootstrap: [AppComponent]

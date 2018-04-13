@@ -1,6 +1,6 @@
-import { ApiClientService } from "../clientApi";
+import { ApiClientService } from '../clientApi';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -16,20 +16,20 @@ const moment = _rollupMoment || _moment;
 export class DatePickerComponent implements OnInit {
   myDate = new FormControl(moment([2018, 1, 12]));
   dateFormat;
-  
-  
-  
+
+
+
   constructor(private apiClientService: ApiClientService) { }
-  
+
 
   ngOnInit() {
   }
 
   changeDate(date): any {
-    this.formatDate(date)
-    this.apiClientService.changeDay(this.dateFormat)
+    this.formatDate(date);
+    this.apiClientService.changeDay(this.dateFormat);
   }
-  
+
   formatDate(date): any {
     this.dateFormat = moment(date.value).format('YYYY-MM-DD');
   }

@@ -1,0 +1,49 @@
+<mat-table [dataSource]="dataSource" (matSort)="dataSource">
+  <!-- teammateName Definition -->
+  <ng-container matColumnDef="teammateName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+    <mat-cell *matCellDef="let TeammateSchedule"> {{TeammateSchedule.teammateName}} </mat-cell>
+  </ng-container>
+  <!-- teammateType Definition -->
+  <ng-container matColumnDef="teammateType">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Job Title </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.teammateType}} </mat-cell>
+  </ng-container>
+  <!-- Monday Definition -->
+  <ng-container matColumnDef="monday">
+    <mat-header-cell *matHeaderCellDef> Monday </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.monday}} </mat-cell>
+  </ng-container>
+  <!-- Tuesday Definition -->
+  <ng-container matColumnDef="tuesday">
+    <mat-header-cell *matHeaderCellDef> Tuesday </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.tuesday}} </mat-cell>
+  </ng-container>
+  <!-- Wednesday Definition -->
+  <ng-container matColumnDef="wednesday">
+    <mat-header-cell *matHeaderCellDef> Wednesday </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.wednesday}} </mat-cell>
+  </ng-container>
+  <!-- Thursday Definition -->
+  <ng-container matColumnDef="thursday">
+    <mat-header-cell *matHeaderCellDef> Thursday </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.thursday}} </mat-cell>
+  </ng-container>
+  <!-- Friday Definition -->
+  <ng-container matColumnDef="friday">
+    <mat-header-cell *matHeaderCellDef> Friday </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.friday}} </mat-cell>
+  </ng-container>
+  <!-- Saturday Definition -->
+  <ng-container matColumnDef="saturday">
+    <mat-header-cell *matHeaderCellDef> Saturday </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.saturday}} </mat-cell>
+  </ng-container>
+  <!-- Sunday Definition -->
+  <ng-container matColumnDef="sunday">
+    <mat-header-cell *matHeaderCellDef> Sunday </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.sunday}} </mat-cell>
+  </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>

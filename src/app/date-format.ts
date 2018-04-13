@@ -1,6 +1,6 @@
-import { NativeDateAdapter } from '@angular/material';
+import {NativeDateAdapter} from '@angular/material';
 const SUPPORTS_INTL_API = typeof Intl !== 'undefined';
- 
+
 export class DateFormat extends NativeDateAdapter {
   useUtcForDisplay = true;
   parse(value: any): Date | null {
