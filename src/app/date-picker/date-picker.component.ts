@@ -14,7 +14,7 @@ const moment = _rollupMoment || _moment;
   styleUrls: ['./date-picker.component.css']
 })
 export class DatePickerComponent implements OnInit {
-  myDate = new FormControl(moment([2018, 1, 12]));
+  myDate = new FormControl();
   dateFormat;
 
 

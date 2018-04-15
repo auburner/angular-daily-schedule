@@ -1,14 +1,20 @@
-import {SCHEDULE} from './mockscheduledata';
-import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import {MatTableDataSource, MatSort} from '@angular/material';
+import {ApiClientService} from "../clientApi";
+import {Component, AfterViewInit, ViewChild, OnInit} from '@angular/core';
+import {MatSort, MatTableDataSource} from '@angular/material';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
+/**
+ * @title Table retrieving data through HTTP
+ */
 @Component({
   selector: 'app-table-schedule',
   templateUrl: './table-schedule.component.html',
   styleUrls: ['./table-schedule.component.css']
 })
-export class TableScheduleComponent implements AfterViewInit {
-  dataSource = new MatTableDataSource(SCHEDULE);
+export class TableScheduleComponent implements OnInit {
+  date: string;
+  location: string;
   displayedColumns = [
     'teammateName',
     'teammateType',
@@ -20,14 +26,32 @@ export class TableScheduleComponent implements AfterViewInit {
     'saturday',
     'sunday',
   ];
+  dataSource = new MatTableDataSource();
+  
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
+  resultsLength = 0;
+  isLoadingResults = false;
+  isRateLimitReached = false;
+
   @ViewChild(MatSort) sort: MatSort;
 
-  /**
-   * Set the sort after the view init since this component will
-   * be able to query its view for the initialized sort.
-   */
+  constructor(private locationService: ApiClientService) {}
+
+  ngOnInit() {
+    this.locationService.location.subscribe(location => this.location = location);
+    this.locationService.date.subscribe(day => this.date = day);
+  }
+
+  getSchedule() {
+    return this.locationService.GetSchedulesByFacilityIdByDayGet(this.location, this.date).map(result => result.data).subscribe(data => this.dataSource.data = data);
+  }
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 }
-

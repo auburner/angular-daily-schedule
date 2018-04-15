@@ -1,4 +1,15 @@
-<mat-table [dataSource]="dataSource" (matSort)="dataSource">
+<div class="button">
+<button mat-raised-button (click)="getSchedule()">Get Schedule</button></div>
+
+<div class="container mat-elevation-z8">
+  <div class="header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" class="table" (matSort)="dataSource">
+
   <!-- teammateName Definition -->
   <ng-container matColumnDef="teammateName">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
@@ -12,38 +23,44 @@
   <!-- Monday Definition -->
   <ng-container matColumnDef="monday">
     <mat-header-cell *matHeaderCellDef> Monday </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.monday}} </mat-cell>
+    <mat-cell *matCellDef="let row" [class.red]="row.monday == 'OFF'"> {{row.monday}} </mat-cell>
   </ng-container>
   <!-- Tuesday Definition -->
   <ng-container matColumnDef="tuesday">
     <mat-header-cell *matHeaderCellDef> Tuesday </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.tuesday}} </mat-cell>
+    <mat-cell *matCellDef="let row" [class.red]="row.tuesday == 'OFF'"> {{row.tuesday}} </mat-cell>
   </ng-container>
   <!-- Wednesday Definition -->
   <ng-container matColumnDef="wednesday">
     <mat-header-cell *matHeaderCellDef> Wednesday </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.wednesday}} </mat-cell>
+    <mat-cell *matCellDef="let row" [class.red]="row.wednesday == 'OFF'"> {{row.wednesday}} </mat-cell>
   </ng-container>
   <!-- Thursday Definition -->
   <ng-container matColumnDef="thursday">
     <mat-header-cell *matHeaderCellDef> Thursday </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.thursday}} </mat-cell>
+    <mat-cell *matCellDef="let row" [class.red]="row.thursday == 'OFF'"> {{row.thursday}} </mat-cell>
   </ng-container>
   <!-- Friday Definition -->
   <ng-container matColumnDef="friday">
     <mat-header-cell *matHeaderCellDef> Friday </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.friday}} </mat-cell>
+    <mat-cell *matCellDef="let row" [class.red]="row.friday == 'OFF'"> {{row.friday}} </mat-cell>
   </ng-container>
   <!-- Saturday Definition -->
   <ng-container matColumnDef="saturday">
     <mat-header-cell *matHeaderCellDef> Saturday </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.saturday}} </mat-cell>
+    <mat-cell *matCellDef="let row" [class.red]="row.saturday == 'OFF'"> {{row.saturday}} </mat-cell>
   </ng-container>
   <!-- Sunday Definition -->
   <ng-container matColumnDef="sunday">
     <mat-header-cell *matHeaderCellDef> Sunday </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.sunday}} </mat-cell>
+    <mat-cell *matCellDef="let row" [class.red]="row.sunday == 'OFF'"> {{row.sunday}} </mat-cell>
   </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+</div>
+
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

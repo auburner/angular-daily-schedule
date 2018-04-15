@@ -19,7 +19,11 @@ import {
   MatNativeDateModule,
   MatSelectModule,
   MatOptionModule,
-  MatSortModule
+  MatSortModule,
+MatProgressSpinnerModule,
+MatPaginatorModule,
+MatButtonModule,
+MatToolbarModule
 } from '@angular/material';
 import {ButtonScheduleComponent} from './button-schedule/button-schedule.component';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
@@ -43,6 +47,7 @@ import {TableScheduleComponent} from './table-schedule/table-schedule.component'
     BrowserAnimationsModule,
     HttpClientModule,
     MatFormFieldModule,
+    MatButtonModule,
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
@@ -50,7 +55,10 @@ import {TableScheduleComponent} from './table-schedule/table-schedule.component'
     MatSelectModule,
     MatOptionModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatToolbarModule
   ],
   providers: [ApiClientService],
   bootstrap: [AppComponent]
