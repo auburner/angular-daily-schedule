@@ -25,7 +25,6 @@ MatPaginatorModule,
 MatButtonModule,
 MatToolbarModule
 } from '@angular/material';
-import {ButtonScheduleComponent} from './button-schedule/button-schedule.component';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatTableModule} from '@angular/material/table';
 import {TableScheduleComponent} from './table-schedule/table-schedule.component';
@@ -37,7 +36,6 @@ import {TableScheduleComponent} from './table-schedule/table-schedule.component'
     AppComponent,
     LocationsComponent,
     DatePickerComponent,
-    ButtonScheduleComponent,
     TableScheduleComponent
   ],
   imports: [

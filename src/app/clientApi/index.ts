@@ -1,7 +1,7 @@
 import {Inject, Injectable, Optional} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
-import {Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 import {
   FacilitiesResponse,
@@ -22,8 +22,7 @@ export class ApiClientService {
 
   private day = new BehaviorSubject<string>('');
   date = this.day.asObservable();
-  
-  //private weeklySchedule = new Observable<FacilitiesResponse>();
+
 
   private domain = 'http://scadevjobs.com/';
 
@@ -57,7 +56,7 @@ export class ApiClientService {
     const params = new HttpParams();
     return this.sendRequest<SchedulesResponse>('get', uri, headers, params, null);
   }
-  
+
   public GetSchedulesByFacilityIdByDayGet(facilityId: string, day: string): Observable<SchedulesResponse> {
     const uri = `/api/Schedules/${facilityId}/${day}`;
     return this.http.get<SchedulesResponse>(this.domain + uri);
@@ -77,7 +76,7 @@ export class ApiClientService {
       return Observable.throw('Unsupported request: ' + method);
     }
   }
-  
+
 
   changeFacility(facility: string) {
     this.facility.next(facility);
