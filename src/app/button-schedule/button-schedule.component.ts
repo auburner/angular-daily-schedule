@@ -1,6 +1,5 @@
 import {ApiClientService} from '../clientApi';
 import {Component, Input, OnInit} from '@angular/core';
-import {DatePickerComponent} from '../date-picker/date-picker.component';
 
 @Component({
   selector: 'app-button-schedule',

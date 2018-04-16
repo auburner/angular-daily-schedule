@@ -16,11 +16,14 @@ import {
 @Injectable()
 export class ApiClientService {
 
+
   private facility = new BehaviorSubject<string>('');
   location = this.facility.asObservable();
 
   private day = new BehaviorSubject<string>('');
   date = this.day.asObservable();
+  
+  //private weeklySchedule = new Observable<FacilitiesResponse>();
 
   private domain = 'http://scadevjobs.com/';
 
@@ -54,6 +57,11 @@ export class ApiClientService {
     const params = new HttpParams();
     return this.sendRequest<SchedulesResponse>('get', uri, headers, params, null);
   }
+  
+  public GetSchedulesByFacilityIdByDayGet(facilityId: string, day: string): Observable<SchedulesResponse> {
+    const uri = `/api/Schedules/${facilityId}/${day}`;
+    return this.http.get<SchedulesResponse>(this.domain + uri);
+  }
 
   private sendRequest<T>(method: string, uri: string, headers: HttpHeaders, params: HttpParams, body: any): Observable<HttpResponse<T>> {
     if (method === 'get') {
@@ -69,7 +77,7 @@ export class ApiClientService {
       return Observable.throw('Unsupported request: ' + method);
     }
   }
-
+  
 
   changeFacility(facility: string) {
     this.facility.next(facility);
