@@ -1,4 +1,4 @@
-import {ApiClientService} from "../clientApi";
+import {ApiClientService} from '../clientApi';
 import {Component, AfterViewInit, ViewChild, OnInit} from '@angular/core';
 import {MatSort, MatTableDataSource} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
   templateUrl: './table-schedule.component.html',
   styleUrls: ['./table-schedule.component.css']
 })
-export class TableScheduleComponent implements OnInit {
+export class TableScheduleComponent implements OnInit, AfterViewInit {
   date: string;
   location: string;
   displayedColumns = [
@@ -26,19 +26,17 @@ export class TableScheduleComponent implements OnInit {
     'saturday',
     'sunday',
   ];
+  @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
-  
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
 
-  resultsLength = 0;
-  isLoadingResults = false;
-  isRateLimitReached = false;
 
-  @ViewChild(MatSort) sort: MatSort;
+
 
   constructor(private locationService: ApiClientService) {}
 
